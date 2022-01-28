@@ -76,7 +76,7 @@ If you wanna use this option. You will need the `launch.json` file.
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
-            "miDebuggerPath": "path_to_your_gdb,
+            "miDebuggerPath": "path_to_your_gdb",
             "setupCommands": [
                 {
                     "description": "Activer l'impression en mode Pretty pour gdb",

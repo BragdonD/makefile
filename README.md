@@ -1,10 +1,96 @@
 # VSC-CPP-Basic-Config
-
 This repository is a basic starting base for any C++ project which has a low to middle lvl of complexity.
 It will allow you to start really fastly a new project with VSC.
-
+## Tree of the project
+To init the project you need to create a src directory where you will put every source file with the `.cpp` extension.
+```tree
+-- src
+	|-*.cpp
+	|...
+--inc
+	|-*.h
+	|-*.hpp
+	|...
+```
+# Run the project
+To compile the project you will need to used the task in the task.json `compile C++ project`.
+```json
+{
+	"type": "shell",
+	"label": "compile C++ project",
+	"command": "",
+	"args": [
+		"mingw32-make"
+	],
+	"problemMatcher": [
+		"$msCompile",
+	],
+	"presentation": {
+		"echo": true,
+		"reveal": "always",
+		"focus": false,
+		"panel": "shared",
+		"showReuseMessage": true,
+		"clear": false
+	},
+	"group": {
+		"kind": "build",
+		"isDefault": true
+	},
+	"detail": "compilateur: path_of_your_compiler"
+},
+```
+To use this task, you will need to be onto the `makefile`.
+Next, you will want to run the program you just created. You have two options:
+- Run the project standardly
+- Run the project in debug mode
+### Run the project standardly
+If you wanna use this option. You will need to use this task :
+```json
+{
+   	"type": "shell",
+    	"label": "C++ run",
+	"command": "${workspaceFolder}\\bin\\main.exe",
+	"args": [],
+    	"group": {
+		"kind": "build",
+		"isDefault": true
+	}
+ }
+```
+And tada your program is running. 
+### Run the project in debug mode
+If you wanna use this option. You will need the `launch.json` file.
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) Lancer",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}\\bin\\main.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "path_to_your_gdb,
+            "setupCommands": [
+                {
+                    "description": "Activer l'impression en mode Pretty pour gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}
+```
+Then, you will need to launch the file with the `F5` key.
 ## Basic C++ Makefile
-This Makefile can be reused independantly of VSC
+This Makefile can be reused independantly of VSC.
 ```makefile
 # Directory Settings
 BUILD_DIR := bin

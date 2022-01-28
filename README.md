@@ -4,12 +4,16 @@ It will allow you to start really fastly a new project with VSC.
 ## Tree of the project
 To init the project you need to create a src directory where you will put every source file with the `.cpp` extension.
 ```tree
+-- .vscode
+	|- task.json
+	|- launch.json
+	|- c_cpp_properties.json
 -- src
-	|-*.cpp
+	|- *.cpp
 	|...
---inc
-	|-*.h
-	|-*.hpp
+-- inc
+	|- *.h
+	|- *.hpp
 	|...
 ```
 # Run the project

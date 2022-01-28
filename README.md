@@ -88,7 +88,7 @@ If you wanna use this option. You will need the `launch.json` file.
     ]
 }
 ```
-Then, you will need to launch the file with the `F5` key.
+Then, you will need to execute the debug mode with the `F5` key.
 ## Basic C++ Makefile
 This Makefile can be reused independantly of VSC.
 ```makefile

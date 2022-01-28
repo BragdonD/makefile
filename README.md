@@ -10,11 +10,9 @@ To init the project you need to create a src directory where you will put every 
 	|- c_cpp_properties.json
 -- src
 	|- *.cpp
-	|...
 -- inc
 	|- *.h
 	|- *.hpp
-	|...
 ```
 # Run the project
 To compile the project you will need to used the task in the task.json `compile C++ project`.

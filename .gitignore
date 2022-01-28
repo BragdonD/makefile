@@ -1,6 +1,7 @@
 *.d
 *.o
 *.exe
+.vscode/dryrun.log
 
 /bin
 /obj

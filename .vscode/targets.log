@@ -1,4 +1,0 @@
-makefile.exe all -f c:\Users\Stephane\Documents\c++\${worspaceFolder}\makefile --print-data-base --no-builtin-variables --no-builtin-rules --question
-'makefile.exe' n'est pas reconnu en tant que commande interne
-ou externe, un programme ex�cutable ou un fichier de commandes.
- 

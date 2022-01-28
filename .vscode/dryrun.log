@@ -1,4 +1,0 @@
-makefile.exe -f c:\Users\Stephane\Documents\c++\${worspaceFolder}\makefile --dry-run --keep-going --print-directory
-'makefile.exe' n'est pas reconnu en tant que commande interne
-ou externe, un programme ex�cutable ou un fichier de commandes.
- 

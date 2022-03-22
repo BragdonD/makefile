@@ -1,5 +1,5 @@
 # VSC-CPP-Basic-Config
-This repository is a starting base for any C++ project which has a low to middle lvl of complexity.
+This repository is a starting repo for any C++ project which has a low to middle lvl of complexity.
 It will allows you to start really fast a new project with VSC.
 ## Project's tree
 To init the project you need to create a src directory where you will put every source file with the `.cpp` extension.

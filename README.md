@@ -23,4 +23,3 @@ Finally there is the makefile for large projects which allows to have subfolders
 
 - https://stackoverflow.com/questions/2483182/recursive-wildcards-in-gnu-make
 - https://www.gnu.org/software/make/manual/html_node/File-Name-Functions.html
-- 

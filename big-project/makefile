@@ -1,0 +1,67 @@
+# Directory Settings
+BUILD_DIR 		:= bin
+TEMPLATE_DIR 	:= inc/bits
+SRC_DIR 		:= src
+OBJ_DIR 		:= obj
+INC_DIR 		:= inc
+DEP_DIR 		:= obj
+
+#EXTENSION
+SRC_EXT 		:= cpp
+INC_EXT 		:= h
+TEMPLATE_EXT 	:= tcc
+OBJ_EXT 		:= o
+DEP_EXT 		:= d
+
+#COMPILER SETTINGS
+CXX 		:= g++	
+CXXFLAGS 	:= -Wall -g # -g is for debugging
+LDFLAGS 	:= -I$(INC_DIR) #Add your lib include and compiler flag here
+
+#recursive wildcard
+rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(subst *,%,$2),$d))
+
+# Files loading
+FILES 		:= $(call rwildcard,$(SRC_DIR), *.$(SRC_EXT))	
+SUB_SRC_DIR := $(sort $(dir $(wildcard $(SRC_DIR)/*/)))
+STRIP_FILES	:= $(notdir $(FILES))
+OBJECTS 	:= $(STRIP_FILES:%.cpp=obj/%.o)	
+INCLUDES 	:= $(call rwildcard, $(INC_DIR), *.$(INC_EXT))	
+INCLUDES 	+= $(call rwildcard, $(TEMPLATE_DIR), *.$(TEMPLATE_EXT))	
+DEPS 		:= $(STRIP_FILES:%.cpp=obj/%.d)		
+EXEC 		:= main			
+
+vpath %.$(SRC_EXT) $(SUB_SRC_DIR)
+
+# build all the object and dependancies files from the *.cpp files
+$(OBJ_DIR)/%.o: %.cpp $(INCLUDES) | $(OBJ_DIR)
+	$(CXX) -c $(CXXFLAGS) $(LDFLAGS) $< -o $@
+	$(CXX) -MM $(CXXFLAGS) $(LDFLAGS) $< > $(DEP_DIR)/$*.d
+
+# main execution
+all: $(BUILD_DIR)/$(EXEC)
+
+# build the executable by linking the object and creating the bin directory if not already created
+$(BUILD_DIR)/$(EXEC) : $(OBJECTS) | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+# create the directory build
+$(BUILD_DIR):
+	@mkdir $(BUILD_DIR)
+
+# create the object build
+$(OBJ_DIR):
+	@mkdir $(OBJ_DIR)
+
+# clean all the project
+.PHONY: clean mrproper
+
+clean:
+	@rm -rf *.o
+
+mrproper: clean
+	@rm -rf $(EXEC)
+
+# pull in dependency info for *existing* .o files
+-include $(OBJECTS:.o=.d)
+

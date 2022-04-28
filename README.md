@@ -48,7 +48,6 @@ Finally there is the makefile for large projects which allows to have subfolders
 - `-shared`: build a shared lib (*.so file for unix, *.dll for windows).
 - `-fno-exceptions`: remove c++ exceptions.
 - `-fno-rtti`: remove run time informations
-- 
 ## Bibliographie
 
 - https://stackoverflow.com/questions/2483182/recursive-wildcards-in-gnu-make

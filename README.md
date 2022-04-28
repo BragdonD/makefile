@@ -19,6 +19,36 @@ As said above there are different makefiles, there is the makefile for small and
 
 Finally there is the makefile for large projects which allows to have subfolders.
 
+## Flags to add to CXXFLAGS
+### Search and Link flags
+- `-l[lib_name]`: link a library to the program. Example: -lws2_32 to link the socket library under windows.
+- `-L[path_to_lib]`: search for additional lib into this path.
+- `-I[path_to_inc]`: search for additional include.
+- `-D[flag]`: pass preprocessor flag. Can add define to the code.
+### GCC and GDB
+#### STD Version
+- `-std=c++[version]`: fix the c++ version to use. (Same for C and gnu).
+#### Verbosity / Debug
+- `-Wall`: Turn on most of compiler warning flags.
+- `-Werror`: Turn all compiler warning into error.
+- `-W`: Turn all the flags not enabled by -Wall.
+- `-pedantic`: Issue warning relative to ISO norms.
+#### Optimization
+- `-O0`: no optimization.
+- `-O2` mid level of optimization.
+- `-O3`: higher level of optimization.
+- `-OFast`: higher than -O3.
+- `-m32`: code for 32-bit environment.
+- `-m64`: code for 64-bit environment.
+- `-finline-functions`: integrate simple function(up to the compiler to decide) into their callers.
+#### Special Options
+- `-g`: for debug purpose to use gdb. Need to be remove in deploy app.
+- `-pie`: builds a dynamically linked position independant exe.
+- `-static-pie`: builds a statically linked position independant exe.
+- `-shared`: build a shared lib (*.so file for unix, *.dll for windows).
+- `-fno-exceptions`: remove c++ exceptions.
+- `-fno-rtti`: remove run time informations
+- 
 ## Bibliographie
 
 - https://stackoverflow.com/questions/2483182/recursive-wildcards-in-gnu-make

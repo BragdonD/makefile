@@ -19,6 +19,16 @@ As said above there are different makefiles, there is the makefile for small and
 
 Finally there is the makefile for large projects which allows to have subfolders.
 
+## Organisation du projet
+
+- src       | - *.cpp ou *.c
+- inc       | - *.hpp ou *.h
+- inc\bits  | - *.tcc
+- bin       | - *.exe
+- obj       | - *.o et *.d
+
+Cette organisation peut être modifiée en changeant les nom des dossiers dans le makefile. Attention la path des dependances et des objets doit rester la même sinon il faudra changer la manière de récupérer les dépendances égalements.
+
 ## Flags to add to CXXFLAGS
 ### Search and Link flags
 - `-l[lib_name]`: link a library to the program. Example: -lws2_32 to link the socket library under windows.

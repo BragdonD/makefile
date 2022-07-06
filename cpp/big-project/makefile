@@ -25,18 +25,18 @@ rwildcard = $(foreach d,$(wildcard $(1:=/*)),$(call rwildcard,$d,$2) $(filter $(
 FILES 		:= $(call rwildcard,$(SRC_DIR), *.$(SRC_EXT))	
 SUB_SRC_DIR := $(sort $(dir $(wildcard $(SRC_DIR)/*/)))
 STRIP_FILES	:= $(notdir $(FILES))
-OBJECTS 	:= $(STRIP_FILES:%.cpp=obj/%.o)	
+OBJECTS 	:= $(STRIP_FILES:%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT))	
 INCLUDES 	:= $(call rwildcard, $(INC_DIR), *.$(INC_EXT))	
 INCLUDES 	+= $(call rwildcard, $(TEMPLATE_DIR), *.$(TEMPLATE_EXT))	
-DEPS 		:= $(STRIP_FILES:%.cpp=obj/%.d)		
+DEPS 		:= $(STRIP_FILES:%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT))		
 EXEC 		:= main			
 
 vpath %.$(SRC_EXT) $(SUB_SRC_DIR)
 
 # build all the object and dependancies files from the *.cpp files
-$(OBJ_DIR)/%.o: %.cpp $(INCLUDES) | $(OBJ_DIR)
+$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT) $(INCLUDES) | $(OBJ_DIR)
 	$(CXX) -c $(CXXFLAGS) $(LDFLAGS) $< -o $@
-	$(CXX) -MM $(CXXFLAGS) $(LDFLAGS) $< > $(DEP_DIR)/$*.d
+	$(CXX) -MM $(CXXFLAGS) $(LDFLAGS) $< > $(DEP_DIR)/$*.$(DEP_EXT)
 
 # main execution
 all: $(BUILD_DIR)/$(EXEC)
@@ -57,11 +57,10 @@ $(OBJ_DIR):
 .PHONY: clean mrproper
 
 clean:
-	@rm -rf *.o
+	@rm -rf *.$(OBJ_EXT)
 
 mrproper: clean
 	@rm -rf $(EXEC)
 
 # pull in dependency info for *existing* .o files
--include $(OBJECTS:.o=.d)
-
+-include $(OBJECTS:.$(OBJ_EXT)=.$(DEP_EXT))

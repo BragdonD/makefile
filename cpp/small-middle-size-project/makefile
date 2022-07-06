@@ -14,10 +14,10 @@ CXXFLAGS := -Wall -g -ansi -pedantic
 LDFLAGS := -I$(INC_DIR)
 
 # Files loading
-FILES := $(wildcard $(SRC_DIR)/*.cpp)	# load all the *.cpp files
-OBJECTS := $(FILES:src/%.cpp=obj/%.o)	# convert all the *.cpp into .o object inside the ./obj/ directory
-INCLUDES := $(wildcard $(INC_DIR)/*.h)	# load all the header files
-DEPS := $(FILES:src/%.cpp=obj/%.d)		# convert all the *.cpp into .d dependancies inside the ./obj/ directory
+FILES := $(wildcard $(SRC_DIR)/*.$(SRC_EXT))	# load all the *.cpp files
+OBJECTS := $(FILES:%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT))	# convert all the *.cpp into .o object inside the ./obj/ directory
+INCLUDES := $(wildcard $(INC_DIR)/*.$(INC_EXT))	# load all the header files
+DEPS := $(FILES:%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT))		# convert all the *.cpp into .d dependancies inside the ./obj/ directory
 EXEC := main							# name of the executable generated
 
 # main execution
@@ -28,9 +28,9 @@ $(BUILD_DIR)/$(EXEC) : $(OBJECTS) | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 # build all the object and dependancies files from the *.cpp files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(INCLUDES) | $(OBJ_DIR)
+$(OBJ_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT) $(INCLUDES) | $(OBJ_DIR)
 	$(CXX) -c $(CXXFLAGS) $(LDFLAGS) $< -o $@
-	$(CXX) -MM $(CXXFLAGS) $(LDFLAGS) $< > $(DEP_DIR)/$*.d
+	$(CXX) -MM $(CXXFLAGS) $(LDFLAGS) $< > $(DEP_DIR)/$*.$(DEP_EXT)
 
 # create the directory build
 $(BUILD_DIR):
@@ -44,10 +44,10 @@ $(OBJ_DIR):
 .PHONY: clean mrproper
 
 clean:
-	@rm -rf *.o
+	@rm -rf *.$(OBJ_EXT)
 
 mrproper: clean
 	@rm -rf $(EXEC)
 
 # pull in dependency info for *existing* .o files
--include $(OBJECTS:.o=.d)
+-include $(OBJECTS:.$(OBJ_EXT)=.$(DEP_EXT))

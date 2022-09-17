@@ -18,10 +18,10 @@ CXXFLAGS := -Wall -g
 LDFLAGS := -I$(INC_DIR)
 
 # Files loading
-FILES := $(wildcard $(SRC_DIR)/*.$(SRC_EXT)) # load all the *.cpp files
-OBJECTS := $(FILES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT))	# convert all the *.cpp into .o object inside the ./obj/ directory
+FILES := $(wildcard $(SRC_DIR)/*.$(SRC_EXT)) # load all the *.c files
+OBJECTS := $(FILES:$(SRC_DIR)/%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT))	# convert all the *.c into .o object inside the ./obj/ directory
 INCLUDES := $(wildcard $(INC_DIR)/*.$(INC_EXT))	# load all the header files
-DEPS := $(FILES:%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT)) # convert all the *.cpp into .d dependancies inside the ./obj/ directory
+DEPS := $(FILES:%.$(SRC_EXT)=$(OBJ_DIR)/%.$(OBJ_EXT)) # convert all the *.c into .d dependancies inside the ./obj/ directory
 EXEC := main # name of the executable generated
 
 # main execution

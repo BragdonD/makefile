@@ -5,6 +5,12 @@ OBJ_DIR := obj
 INC_DIR := inc
 DEP_DIR := obj
 
+#EXTENSION
+SRC_EXT 		:= c
+INC_EXT 		:= h
+OBJ_EXT 		:= o
+DEP_EXT 		:= d
+
 CXX := gcc		#compilator flag
 # -Wall : turn on  most of the information
 # -g : turn on debug info

@@ -31,7 +31,7 @@ EXEC 		:= main
 vpath %.$(SRC_EXT) $(SUB_SRC_DIR)
 
 # build all the object and dependancies files from the *.cpp files
-$(OBJ_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT) $(INCLUDES) | $(OBJ_DIR)
+$(OBJ_DIR)/%.$(OBJ_EXT): %.$(SRC_EXT) $(INCLUDES) | $(OBJ_DIR)
 	$(CXX) -c $(CXXFLAGS) $(LDFLAGS) $< -o $@
 	$(CXX) -MM $(CXXFLAGS) $(LDFLAGS) $< > $(DEP_DIR)/$*.$(DEP_EXT)
 

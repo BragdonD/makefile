@@ -34,20 +34,20 @@ $(OBJ_DIR)/%.$(OBJ_EXT): $(SRC_DIR)/%.$(SRC_EXT) $(INCLUDES) | $(OBJ_DIR)
 
 # create the directory build
 $(BUILD_DIR):
-	@mkdir $(BUILD_DIR)
+	mkdir $(BUILD_DIR)
 
 # create the object build
 $(OBJ_DIR):
-	@mkdir $(OBJ_DIR)
+	mkdir $(OBJ_DIR)
 
 # clean all the project
 .PHONY: clean mrproper
 
 clean:
-	@rm -rf *.$(OBJ_EXT)
+	rm *.$(OBJ_EXT)
 
 mrproper: clean
-	@rm -rf $(EXEC)
+	rm $(EXEC)
 
 # pull in dependency info for *existing* .o files
 -include $(OBJECTS:.$(OBJ_EXT)=.$(DEP_EXT))

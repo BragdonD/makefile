@@ -58,6 +58,18 @@ Cette organisation peut être modifiée en changeant les nom des dossiers dans l
 - `-shared`: build a shared lib (*.so file for unix, *.dll for windows).
 - `-fno-exceptions`: remove c++ exceptions.
 - `-fno-rtti`: remove run time informations
+
+## Resolve some bugs
+Recently when running those makefile i come with the follow errors :
+```
+mkdir obj
+process_begin: CreateProcess(NULL, mkdir obj, ...) failed.
+make (e=2): The system cannot find the file specified.
+make: *** [makefile:45 obj] Error 2
+```
+So the source of the problem was coming from my compiler which is the MINGW project from MSYS. Inside this project the command mkdir is not present. I don't know why it was working before...
+Anyways to fix it you need to download the directory from this link : https://sourceforge.net/projects/unxutils/?source=typ_redirect and then you extract the tools necessary inside the `bin` directory of your compiler.
+
 ## Bibliographie
 
 - https://stackoverflow.com/questions/2483182/recursive-wildcards-in-gnu-make

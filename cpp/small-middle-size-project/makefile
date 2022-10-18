@@ -5,6 +5,13 @@ OBJ_DIR := obj
 INC_DIR := inc
 DEP_DIR := obj
 
+#EXTENSION
+SRC_EXT 		:= cpp
+INC_EXT 		:= h
+TEMPLATE_EXT 	:= tcc
+OBJ_EXT 		:= o
+DEP_EXT 		:= d
+
 CXX := g++		#compilator flag
 # -Wall : turn on  most of the information
 # -g : turn on debug info

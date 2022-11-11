@@ -59,6 +59,13 @@ Cette organisation peut être modifiée en changeant les nom des dossiers dans l
 - `-fno-exceptions`: remove c++ exceptions.
 - `-fno-rtti`: remove run time informations
 
+## Run the project
+After running the makefile you can run the following command to run your project : `.\bin\main`
+WARNING: `main` is just the name given to the output program if you rename it then the command change too.
+
+## Reminder
+Since a makefile is not the same as an IDE you need to save the files yourself!!!!!
+
 ## Resolve some bugs
 Recently when running those makefile i come with the follow errors :
 ```
